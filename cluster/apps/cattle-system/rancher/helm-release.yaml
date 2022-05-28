@@ -21,15 +21,12 @@ spec:
     ingress:
       enabled: true
       tls:
-        - secretName: rancher-tls
-          hosts:
-            - "rancher.${SECRET_DOMAIN}"
+        source: secret
       extraAnnotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-        # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-        # external-dns/is-public: "true"
-        # hajimari.io/enable: "true"
-        # hajimari.io/icon: "google-home"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "google-home"
         kubernetes.io/ingress.class: "traefik"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         # traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
