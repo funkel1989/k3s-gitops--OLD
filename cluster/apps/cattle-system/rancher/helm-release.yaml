@@ -17,21 +17,19 @@ spec:
         namespace: flux-system
   values:
     hostname: "rancher.${SECRET_DOMAIN}"
+    replicas: 3
     ingress:
-      hosts:
-        - host: "rancher.${SECRET_DOMAIN}"
-          paths:
-            - "/"
+      enabled: true
       tls:
         - secretName: rancher-tls
           hosts:
             - "rancher.${SECRET_DOMAIN}"
       extraAnnotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
-        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-        external-dns/is-public: "true"
-        hajimari.io/enable: "true"
-        hajimari.io/icon: "google-home"
+        # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        # external-dns/is-public: "true"
+        # hajimari.io/enable: "true"
+        # hajimari.io/icon: "google-home"
         kubernetes.io/ingress.class: "traefik"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        # traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
