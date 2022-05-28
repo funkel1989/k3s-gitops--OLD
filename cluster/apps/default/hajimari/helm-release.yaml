@@ -44,8 +44,6 @@ spec:
               url: "https://discord.com"
             - name: Gmail
               url: "https://gmail.com"
-            - name: Slack
-              url: "https://slack.com/signin"
         - name: Cloud
           links:
             - name: Drive
@@ -58,14 +56,6 @@ spec:
               url: "https://devdocs.io"
             - name: Devhints
               url: "https://devhints.io"
-        - name: Lifestyle
-          links:
-            - name: Design Milk
-              url: "https://design-milk.com/category/interior-design/"
-            - name: Dwell
-              url: "https://www.dwell.com/"
-            - name: Freshome
-              url: "https://www.mymove.com/freshome/"
         - name: Media
           links:
             - name: Spotify
