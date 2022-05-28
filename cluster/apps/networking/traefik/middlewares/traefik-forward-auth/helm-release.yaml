@@ -1,0 +1,37 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik-forward-auth
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: traefik-forward-auth
+      version: 2.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: traefik
+      namespace: networking
+  values:
+    image:
+      repository: thomseddon/traefik-forward-auth
+      tag: 2.2.0
+    env:
+      LOG_LEVEL: trace
+      AUTH_HOST: "auth.${SECRET_DOMAIN}"
+      LIFETIME: "604800"
+      COOKIE_DOMAIN: "${SECRET_DOMAIN}"
+      DEFAULT_PROVIDER: "google"
+      PROVIDERS_GOOGLE_CLIENT_ID: "${SECRET_GOOGLE_CLIENT_ID}"
+      PROVIDERS_GOOGLE_CLIENT_SECRET: "${SECRET_GOOGLE_CLIENT_SECRET}"
+      WHITELIST: "${SECRET_WHITELIST}"
+    middleware:
+      enabled: true
+      nameOverride: traefik-forward-auth

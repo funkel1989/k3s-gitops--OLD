@@ -5,3 +5,4 @@ resources:
   - error-pages.yaml
   - cloudflare-only.yaml
   - internal-only.yaml
+  - traefik-forward-auth
