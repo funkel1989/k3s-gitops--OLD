@@ -16,7 +16,7 @@ spec:
         name: rancher-charts
         namespace: flux-system
   values:
-    hostnam: "rancher.${SECRET_DOMAIN}"
+    hostname: "rancher.${SECRET_DOMAIN}"
     ingress:
       hosts:
         - host: "rancher.${SECRET_DOMAIN}"
@@ -34,4 +34,4 @@ spec:
         hajimari.io/icon: "google-home"
         kubernetes.io/ingress.class: "traefik"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        # traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
