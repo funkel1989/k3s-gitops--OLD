@@ -184,9 +184,9 @@ spec:
           - nfsvers=4
           - sec=sys
 
-    volumeSnapshotClasses:
-      - name: csi-truenas-nfs
-        deletionPolicy: Delete # Delete, Retain
+    # volumeSnapshotClasses:
+    #   - name: csi-truenas-nfs
+    #     deletionPolicy: Delete # Delete, Retain
 
     csiProxy:
       resources:
