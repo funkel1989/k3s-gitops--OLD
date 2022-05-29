@@ -10,3 +10,4 @@ resources:
   - networking.yaml
   - system-upgrade.yaml
   - cattle-system.yaml
+  - minio.yaml
