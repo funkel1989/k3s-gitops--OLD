@@ -10,4 +10,4 @@ spec:
   storageClassName: csi-truenas-nfs
   resources:
     requests:
-      storage: 1000Gi
+      storage: 1001Gi
