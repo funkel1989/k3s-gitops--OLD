@@ -23,7 +23,10 @@ spec:
     remediation:
       retries: 5
   values:
-    extraEnvVars:
+    envFrom:
+      - secretRef:
+          name: minio-creds
+    env:
       - name: TZ
         value: "${TZ}"
       - name: MINIO_PROMETHEUS_URL
