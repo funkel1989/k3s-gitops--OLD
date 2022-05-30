@@ -26,11 +26,6 @@ spec:
       backupstorePollInterval: 300
       backupTarget: s3://longhorn-backup/
       backupTargetCredentialSecret: longhorn-s3-backups-secrets
-      createDefaultDiskLabeledNodes: true
-      defaultDataLocality: best-effort
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      storageMinimalAvailablePercentage: 10
       defaultReplicaCount: 3
       defaultLonghornStaticStorageClass: longhorn
     ingress:
