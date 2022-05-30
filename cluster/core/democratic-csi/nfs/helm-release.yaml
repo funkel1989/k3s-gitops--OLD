@@ -40,7 +40,7 @@ spec:
           port: 22
           username: root
           # password: "${SECRET_TRUENAS_PASSWORD}"
-          privateKey: "${SECRET_TRUENAS_PRIVATEKEY}"
+          privateKey: ${SECRET_TRUENAS_PRIVATEKEY}
         zfs:
           cli:
             sudoEnabled: true
