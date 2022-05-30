@@ -38,7 +38,7 @@ spec:
         sshConnection:
           host: 192.168.0.22
           port: 22
-          username: root
+          username: democrat
           password: "${SECRET_TRUENAS_PASSWORD}"
           # privateKey: ${SECRET_TRUENAS_PRIVATEKEY}
         zfs:
@@ -51,16 +51,16 @@ spec:
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
-          datasetPermissionsUser: 0
-          datasetPermissionsGroup: 0
+          datasetPermissionsUser: 1001
+          datasetPermissionsGroup: 1001
         nfs:
           shareCommentTemplate: "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           shareHost: 192.168.0.22
           shareAlldirs: false
           shareAllowedHosts: []
           shareAllowedNetworks: []
-          shareMaprootUser: root
-          shareMaprootGroup: "wheel"
+          shareMaprootUser: democrat
+          shareMaprootGroup: wheel
           shareMapallUser: ""
           shareMapallGroup: ""
 
