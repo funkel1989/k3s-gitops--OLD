@@ -24,7 +24,7 @@ spec:
       reclaimPolicy: Retain
     defaultSettings:
       backupstorePollInterval: 300
-      backupTarget: s3://longhorn-backup/
+      backupTarget: s3://longhorn-backup@us-east-2/
       backupTargetCredentialSecret: longhorn-s3-backups-secrets
       defaultReplicaCount: 3
       defaultLonghornStaticStorageClass: longhorn
