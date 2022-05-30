@@ -22,12 +22,46 @@ spec:
 
     driver:
       # see the driver-config-secret.yaml template for syntax
-      existingConfigSecret: secret-democratic-csi-driver-config-nfs
+      # existingConfigSecret: secret-democratic-csi-driver-config-nfs
       config:
         ## NOTE: if setting an existing secret you must still set `driver.config.driver`
         ## to the appropriate (equivalent) 'driver' value used in the secret,
         ## as the value is used by the chart for other purposes beyond secret creation
         driver: freenas-api-nfs
+        instance_id: B8712266-C1B5-4DCD-9DFD-C6646C0AD3A4
+        httpConnection:
+          protocol: http
+          port: 80
+          apiKey: "${SECRET_TRUENAS_APIKEY}"
+          allowInsecure: true
+          apiVersion: 2
+        sshConnection:
+          host: 192.168.0.22
+          port: 22
+          username: root
+          privateKey: "${SECRET_TRUENAS_PRIVATEKEY}"
+        zfs:
+          cli:
+            sudoEnabled: true
+            datasetProperties:
+              "org.freenas:description": "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+            datasetParentName: data/k8s/nfs/v
+            detachedSnapshotsDatasetParentName: data/k8s/nfs/s
+            datasetEnableQuotas: true
+            datasetEnableReservation: false
+            datasetPermissionsMode: "0777"
+            datasetPermissionsUser: 0
+            datasetPermissionsGroup: 0
+        nfs:
+          shareCommentTemplate: "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+          shareHost: 192.168.0.22
+          shareAlldirs: false
+          shareAllowedHosts: []
+          shareAllowedNetworks: []
+          shareMaprootUser: root
+          shareMaprootGroup: "wheel"
+          shareMapallUser: ""
+          shareMapallGroup: ""
 
     controller:
       enabled: true
