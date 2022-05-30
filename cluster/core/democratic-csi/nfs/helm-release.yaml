@@ -78,7 +78,7 @@ spec:
         enabled: true
       driver:
         image: docker.io/democraticcsi/democratic-csi:latest
-        logLevel: info
+        logLevel: debug
         # ### for the controller, manually mount from the remote NFS server on start,
         # ### so it can dynamically create PVC (the "crude" part)
         # ### ref: https://gist.github.com/admun/4372899f20421a947b7544e5fc9f9117
@@ -149,7 +149,7 @@ spec:
             memory: 14M
       driver:
         image: docker.io/democraticcsi/democratic-csi:latest
-        logLevel: info
+        logLevel: debug
         resources:
           requests:
             cpu: 35m
