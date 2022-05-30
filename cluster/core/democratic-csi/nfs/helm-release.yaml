@@ -43,15 +43,15 @@ spec:
         zfs:
           cli:
             sudoEnabled: true
-            datasetProperties:
-              "org.freenas:description": "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
-            datasetParentName: data/k8s/nfs/v
-            detachedSnapshotsDatasetParentName: data/k8s/nfs/s
-            datasetEnableQuotas: true
-            datasetEnableReservation: false
-            datasetPermissionsMode: "0777"
-            datasetPermissionsUser: 0
-            datasetPermissionsGroup: 0
+          datasetProperties:
+            "org.freenas:description": "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+          datasetParentName: data/k8s/nfs/v
+          detachedSnapshotsDatasetParentName: data/k8s/nfs/s
+          datasetEnableQuotas: true
+          datasetEnableReservation: false
+          datasetPermissionsMode: "0777"
+          datasetPermissionsUser: 0
+          datasetPermissionsGroup: 0
         nfs:
           shareCommentTemplate: "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           shareHost: 192.168.0.22
