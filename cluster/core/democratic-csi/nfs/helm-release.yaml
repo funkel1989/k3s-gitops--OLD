@@ -55,7 +55,7 @@ spec:
           shareAllowedHosts: []
           shareAllowedNetworks: []
           shareMaprootUser: democrat
-          shareMaprootGroup: wheel
+          shareMaprootGroup: democrat-group
           shareMapallUser: ""
           shareMapallGroup: ""
 
