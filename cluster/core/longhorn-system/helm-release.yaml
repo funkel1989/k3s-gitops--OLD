@@ -23,11 +23,30 @@ spec:
       defaultClassReplicaCount: 3
       reclaimPolicy: Retain
     defaultSettings:
-      # backupstorePollInterval: 300
-      # backupTarget: s3://longhorn-backup@us-east-2/
-      # backupTargetCredentialSecret: longhorn-s3-backups-secrets
+      backupTarget: s3://longhorn-backup@us-east-2/
+      backupTargetCredentialSecret: longhorn-s3-backups-secrets
       defaultReplicaCount: 3
       defaultLonghornStaticStorageClass: longhorn
+      backupstorePollInterval: 300
+      createDefaultDiskLabeledNodes: true
+      defaultDataLocality: best-effort
+      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
+      replicaSoftAntiAffinity: false
+      storageMinimalAvailablePercentage: 10
+      storageOverProvisioningPercentage: "200%"
+      upgradeChecker: false
+      priorityClass: high-priority
+      autoSalvage: true
+      autoDeletePodWhenVolumeDetachedUnexpectedly: true
+      disableSchedulingOnCordonedNode: false
+      replicaZoneSoftAntiAffinity: false
+      volumeAttachmentRecoveryPolicy: "wait"
+      mkfsExt4Parameters: -O ^64bit,^metadata_csum
+      replicaReplenishmentWaitInterval: 300
+      allowVolumeCreationWithDegradedAvailability: true
+      guaranteedEngineManagerCPU: 8
+      guaranteedReplicaManagerCPU: 8
     ingress:
       enabled: true
       host: "longhorn.${SECRET_DOMAIN}"
@@ -46,3 +65,27 @@ spec:
         hajimari.io/icon: "file-table-box"
         hajimari.io/group: "storage"
         hajimari.io/appName: "longhorn"
+    longhornManager:
+      priorityClass: system-node-critical
+    longhornDriver:
+      priorityClass: system-node-critical
+      tolerations:
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          # Evict pods from the node if the node becomes unreachable after this toleration timer expires.
+          tolerationSeconds: 15
+    longhornUI:
+      tolerations:
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          # Evict pods from the node if the node becomes unreachable after this toleration timer expires.
+          tolerationSeconds: 15
+    resources:
+      requests:
+        cpu: 50m
+        memory: 50Mi
+      limits:
+        cpu: 250m
+        memory: 500Mi

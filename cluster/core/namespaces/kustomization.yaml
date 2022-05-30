@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - democratic-csa.yaml
+  - kubernetes-dashboard.yaml
   - longhorn-system.yaml
   - metallb-system.yaml
   - monitoring.yaml

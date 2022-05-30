@@ -9,3 +9,4 @@ resources:
   - democratic-csi
   - minio
   - longhorn-system
+  - kubernetes-dashboard
