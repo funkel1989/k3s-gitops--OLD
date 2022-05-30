@@ -21,11 +21,17 @@ spec:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-        kubernetes.io/ingress.class: traefik
+        kubernetes.io/ingress.class: "traefik"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "box"
+        hajimari.io/group: "dashboards"
+        hajimari.io/appName: "k3s dashboard"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
         traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       hosts:
-        - &host k3s.${CLUSTER_DOMAIN}
+        - &host k3s.${SECRET_DOMAIN}
       tls:
         - hosts:
             - *host
