@@ -12,4 +12,4 @@ resources:
   - kube-system
   - networking
   - cattle-system
-  # - monitoring
+  - monitoring
