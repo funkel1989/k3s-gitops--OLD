@@ -25,6 +25,7 @@ spec:
         driver: freenas-nfs
         instance_id: B8712266-C1B5-4DCD-9DFD-C6646C0AD3A4
         httpConnection:
+          host: 192.168.0.22
           protocol: http
           port: 80
           apiKey: "${SECRET_TRUENAS_APIKEY}"
