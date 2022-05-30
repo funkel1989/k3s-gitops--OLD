@@ -24,7 +24,7 @@ spec:
       reclaimPolicy: Retain
     defaultSettings:
       backupstorePollInterval: 300
-      backupTarget: s3://mycavanaughnetwork-backup-bucket/
+      backupTarget: s3://longhorn-backup/
       backupTargetCredentialSecret: longhorn-s3-backups-secrets
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort

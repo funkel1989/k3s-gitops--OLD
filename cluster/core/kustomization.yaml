@@ -8,3 +8,4 @@ resources:
   - metallb-system
   - democratic-csi
   - minio
+  - longhorn-system
