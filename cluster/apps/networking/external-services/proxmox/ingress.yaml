@@ -1,0 +1,32 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: &app proxmox
+  namespace: networking
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-traefik-forward-auth@kubernetescrd"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    hajimari.io/appName: "proxmox"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "web"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: &host "proxmox.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *app
+                port:
+                  number: 443
+  tls:
+    - hosts:
+        - *host
